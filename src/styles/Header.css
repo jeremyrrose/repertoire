@@ -1,0 +1,11 @@
+header {
+    font-family: 'Baloo Bhai', serif;
+    text-align: left;
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 70px;
+    margin: 0px 20px;
+    padding: 0px;
+}

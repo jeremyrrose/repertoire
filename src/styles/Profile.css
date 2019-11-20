@@ -1,0 +1,26 @@
+main {
+    display: flex;
+    text-align: left;
+    font-family: 'Comfortaa', sans-serif;
+}
+
+main h4 {
+    font-family: 'Baloo Bhai', serif;
+    font-weight: normal;
+    font-size: 40px;
+    margin: 24px 6px 6px 6px;
+}
+
+.info h4, .project h4 {
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.info h4 {
+    font-size: 34px;
+}
+
+.performance {
+    display: flex;
+}

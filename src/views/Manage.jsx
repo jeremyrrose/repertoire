@@ -1,9 +1,9 @@
 import React from 'react';
-import { Info, Instruments, Projects, Education, Upcoming, Past } from '../components/';
+import { Project } from '../components/';
 import { getSingleUser, getUserProjects, getProjectPerformances } from '../services/ApiCalls';
 import '../styles/Profile.css';
 
-export class Profile extends React.Component {
+export class Manage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ export class Profile extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.fetchAll(this.props.match.params.profile_id)
+        await this.fetchAll(this.props.userId);
     }
 
     fetchAll = async (user_id) => {
@@ -47,30 +47,12 @@ export class Profile extends React.Component {
         return performances;
     }
 
-    render = () => {       
-
-        const { first, last, city, state, education, instruments } = this.state.profile;
-        const projects = this.state.projects;
-        const projectKeys = {};
-        projects.forEach(proj => projectKeys[proj.id] = proj.name);
-        const { upcoming, past } = this.state.performances;
-        const { user_id } = this.props.match.params;
+    render() {
 
         return (
-            <main>
-                <section className="primaryInfo">
-                    <Info first={first} last={last} city={city} state={state} />
-                    <Instruments instruments={instruments} />
-                    <Projects user_id={user_id} projects={projects} /> 
-                    <Education education={education} />
-                </section>
-                <section className="feed">
-                    <Upcoming upcoming={upcoming} projectKeys={projectKeys} />
-                    <Past past={past} projectKeys={projectKeys} />
-                </section>
-            </main>
+
+            <h1>{this.state.profile.username}</h1>
+
         )
-
     }
-
 }

@@ -1,12 +1,22 @@
 import React from 'react';
 
-export const Instruments = () => {
+export const Instruments = (props) => {
 
-    return (
-        <div className="instruments">
-            <h4>Instruments</h4>
-            <p>instrument, instrument, instrument</p>
-        </div>
-    )
+    if (props.instruments) {
+
+        const instruments = props.instruments;
+        const axes = instruments.join(', ');
+    
+        if (axes) {
+            return (
+                <div className="instruments">
+                    <h4>instruments</h4>
+                    { axes }
+                </div>
+            );
+        } 
+    }
+
+    return null;
 
 }
