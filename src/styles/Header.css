@@ -1,6 +1,8 @@
 header {
     font-family: 'Baloo Bhai', serif;
     text-align: left;
+    display: flex;
+    justify-content: space-between;
 }
 
 h1 {

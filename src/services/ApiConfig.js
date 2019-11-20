@@ -7,3 +7,34 @@ export const api = Axios.create({
 		// 'Access-Control-Allow-Origin': '*'
 	}
 })
+
+
+const SPOTIFY_AUTH = process.env.REACT_APP_SPOTIFY_AUTH;
+const tokenRequestBody = 'grant_type=client_credentials';
+const myStorage = window.localStorage;
+
+export const spotifyGetToken = async () => {
+	try {
+		const response = await Axios.post('https://accounts.spotify.com/api/token', tokenRequestBody, {	headers: { "Authorization": `Basic ${SPOTIFY_AUTH}` } } );
+		return response.data.access_token;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+export const spotifySearch = async (string) => {
+
+	if (!myStorage.getItem('spotifyToken') || Number(myStorage.getItem('tokenTime')) + 3500000 < new Date().getTime()) {
+		const token = await spotifyGetToken();
+		myStorage.setItem('spotifyToken', token);
+		myStorage.setItem('tokenTime', new Date().getTime());
+		console.log(myStorage);
+	}
+
+	try {
+		const response = await Axios.get(`https://api.spotify.com/v1/search?q=${string}*&type=artist`,{ headers: {'Authorization': `Bearer ${myStorage.getItem('spotifyToken')}`} });
+		return response;
+	} catch (error) {
+		console.log(error);
+	}
+}

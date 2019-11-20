@@ -1,6 +1,7 @@
 import React from 'react';
-import { Project } from '../components/';
-import { getSingleUser, getUserProjects, getProjectPerformances } from '../services/ApiCalls';
+import { ProjectForm } from '../forms/';
+import { getSingleUser, getUserProjects, getProjectPerformances, createProject } from '../services/ApiCalls';
+import { spotifySearch, spotifyGetToken } from '../services/ApiConfig';
 import '../styles/Profile.css';
 
 export class Manage extends React.Component {
@@ -10,12 +11,23 @@ export class Manage extends React.Component {
         this.state = {
             profile: {},
             projects: [],
-            performances: []
+            performances: [],
+            project: {
+                name: '',
+                avatar: '',
+                spotify: '',
+                website: '',
+                yourInstrument: ''
+            },
+            complete: false
         }
     }
 
     componentDidMount = async () => {
-        await this.fetchAll(this.props.userId);
+            console.log(this.props.userId);
+    //        await this.fetchAll(this.props.userId);
+            const resp = await spotifySearch(`Total+War`);
+            console.log(resp); 
     }
 
     fetchAll = async (user_id) => {
@@ -47,11 +59,30 @@ export class Manage extends React.Component {
         return performances;
     }
 
+	handleChange = (e) => {
+        this.setState({ project: {
+            ...this.state.project,
+            [e.target.name]: e.target.value 
+            }
+        });
+    }
+    
+    projectSubmit = (e) => {
+		console.log(e);
+		console.log(this.state.project);
+		e.preventDefault();
+		createProject(this.props.userId, this.state.project)
+		.then(this.setState({complete: true}))
+		.catch(() => this.setState({ errorMsg: 'There was an error!' }))
+	}
+
     render() {
+
+        const { name, avatar, spotify, website, yourInstrument } = this.state.project;
 
         return (
 
-            <h1>{this.state.profile.username}</h1>
+            <ProjectForm onChange={this.handleChange} onSubmit={this.projectSubmit} formData={ name, avatar, spotify, website, yourInstrument } />
 
         )
     }

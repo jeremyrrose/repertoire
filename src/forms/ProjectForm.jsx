@@ -3,73 +3,50 @@ import { Input, Button } from '../shared';
 
 export const ProjectForm = (props) => {
 	const { onChange, onSubmit } = props;
-	const { first, last, city, state, image_url, username, email, instruments } = props.formData
+	const { name, avatar, spotify, yourInstrument, website } = props.formData
 	return (
 		<form className='form' onSubmit={onSubmit} >
 			<Input
-				name='first'
-				value={first}
+				name='name'
+				value={name}
 				required={true}
-				placeholder='First name'
+				placeholder='Project name'
 				onChange={(e) => onChange(e)}
 			/>
 
             <Input
-                name='last'
-                value={last}
-                required={true}
-                placeholder='Last name'
+                name='avatar'
+                value={avatar}
+                required={false}
+                placeholder='Image URL'
                 onChange={(e) => onChange(e)}
             />
 
             <Input
-                name='username'
-                value={username}
-                required={true}
-                placeholder='Username'
-                onChange={(e) => onChange(e)}
-            />
-
-            <Input
-                name='email'
-                value={email}
-                required={true}
-                placeholder='Your email'
+                name='spotify'
+                value={spotify}
+                required={false}
+                placeholder='Spotify link'
                 onChange={(e) => onChange(e)}
             />
 
 			<Input
-				name='city'
-				value={city}
-				required={true}
-				placeholder='City'
-				onChange={(e) => onChange(e)}
-			/>
-
-            <Input
-				name='state'
-				value={state}
-				required={true}
-				placeholder='State'
-				onChange={(e) => onChange(e)}
-			/>
-
-			<Input
-				name='image_url'
-				value={image_url}
+				name='website'
+				value={website}
 				required={false}
-				placeholder='Profile photo optional'
-				onChange={(e) => onChange(e)}
-			/>
-			<Input
-				name='instruments'
-				value={instruments}
-				required={false}
-				placeholder='Your primary instrument (optional)'
+				placeholder='Website URL'
 				onChange={(e) => onChange(e)}
 			/>
 
-			<Button title='Next >>' />
+            <Input
+                name='yourInstrument'
+                value={yourInstrument}
+                required={false}
+                placeholder='Your primary instrument in this project'
+                onChange={(e) => onChange(e)}
+            />
+
+			<Button title='Add project >>' />
 
 		</form>
 	)

@@ -13,6 +13,7 @@ class App extends React.Component {
     this.state = {
       user: '',
       data: {},
+      loginForm: '',
       message: ''
     }
   }
@@ -33,11 +34,22 @@ class App extends React.Component {
 
   changeUser = (user) => this.setState({ user });
 
+  handleChange = (e) => this.setState({ loginForm: e.target.value });
+
+  login = (e) => {
+    e.preventDefault();
+    console.log(e);
+    this.setState({ 
+      user: this.state.loginForm,
+      loginForm: ''
+     });
+  }
+
   render() {
 
     return (
       <div className="App">
-        <Header />
+        <Header changeUser={this.login} onChange={this.handleChange} formData={this.state.loginForm} />
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route exact path="/home" component={ Profile } />
