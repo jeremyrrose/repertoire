@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, withRouter, Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+import { Redirect, BrowserRouter as Router } from 'react-router-dom';
 import { UserInfoForm } from '../forms';
 import { userSignup } from '../services/ApiCalls';
 

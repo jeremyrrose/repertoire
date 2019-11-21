@@ -1,0 +1,21 @@
+button.spotify {
+    width: 400px;
+    display: flex;
+}
+
+button.spotify h4, button.spotify img {
+    pointer-events: none;
+}
+
+button.spotify h4 {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 20px;
+}
+
+button.spotify img {
+    width: 64px;
+    height: 64px;
+}

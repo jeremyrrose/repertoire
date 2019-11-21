@@ -42,7 +42,7 @@ export const userSignup = async (userData) => {
 		console.log(response);
 		return response;
 	} catch (error) {
-		throw error
+		throw error;
 	}
 }
 
@@ -52,6 +52,16 @@ export const createProject = async (user, projectData) => {
 		console.log(response);
 		return response;
 	} catch (error) {
-		throw error
+		throw error;
+	}
+}
+
+export const updateProject = async (user, projectId, projectData) => {
+	try {
+		const response = await api.put(`users/${user}/projects/${projectId}`, projectData);
+		console.log(response);
+		return response;
+	} catch (error) {
+		throw error;
 	}
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import { Header } from './components';
 import { Login, Profile, Manage } from './views';
@@ -47,11 +47,21 @@ class App extends React.Component {
 
   render() {
 
+    let home;
+    if (this.state.user) {
+      home = <Redirect to='/manage' />
+    } else {
+      home = <Login changeUser={this.login} onChange={this.handleChange} formData={this.state.loginForm} />
+    }
+
+    let name = '';
+    this.state.user && (name=this.state.data[this.state.user-1].first)
+
     return (
       <div className="App">
-        <Header changeUser={this.login} onChange={this.handleChange} formData={this.state.loginForm} />
+        <Header userId={this.state.user} name={name} changeUser={this.login} onChange={this.handleChange} formData={this.state.loginForm} />
         <Switch>
-          <Route exact path="/" component={ Login } />
+          <Route exact path="/" render={() => home} />
           <Route exact path="/home" component={ Profile } />
           <Route exact path="/users/:profile_id" component={ Profile } />
           <Route exact path="/signup" render={() => <Signup changeUser={this.changeUser} /> } />

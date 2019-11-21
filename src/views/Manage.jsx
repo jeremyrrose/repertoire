@@ -1,8 +1,10 @@
 import React from 'react';
-import { ProjectForm } from '../forms/';
-import { getSingleUser, getUserProjects, getProjectPerformances, createProject } from '../services/ApiCalls';
-import { spotifySearch, spotifyGetToken } from '../services/ApiConfig';
+import { Projects } from '../components';
+import { ProjectForm, SpotifySearch } from '../forms/';
+import { getSingleUser, getUserProjects, getProjectPerformances, createProject, updateProject } from '../services/ApiCalls';
+import { spotifySearch } from '../services/ApiConfig';
 import '../styles/Profile.css';
+import '../styles/Manage.css';
 
 export class Manage extends React.Component {
 
@@ -12,6 +14,7 @@ export class Manage extends React.Component {
             profile: {},
             projects: [],
             performances: [],
+            projectKey: '',
             project: {
                 name: '',
                 avatar: '',
@@ -19,15 +22,17 @@ export class Manage extends React.Component {
                 website: '',
                 yourInstrument: ''
             },
+            spotifyString: '',
+            spotifyResults: [],
             complete: false
         }
     }
 
     componentDidMount = async () => {
             console.log(this.props.userId);
-    //        await this.fetchAll(this.props.userId);
-            const resp = await spotifySearch(`Total+War`);
-            console.log(resp); 
+            await this.fetchAll(this.props.userId);
+            // const resp = await spotifySearch(`Total+War`);
+            // console.log(resp); 
     }
 
     fetchAll = async (user_id) => {
@@ -66,6 +71,32 @@ export class Manage extends React.Component {
             }
         });
     }
+
+    handleSpotifySearch = async (e) => {
+        this.setState({ spotifyString: e.target.value });
+        if (this.state.spotifyString.length > 3) {
+            const resp = await spotifySearch(e.target.value);
+            if (resp) {
+                this.setState({ spotifyResults: resp.data.artists.items });
+            }     
+        }
+    }
+
+    handleSpotifySubmit = (e) => {
+        e.preventDefault();
+        const id = e.target.id;
+        console.log(e.target.id);
+        const bandInfo = this.state.spotifyResults[id];
+        this.setState(state => ({
+            spotifyString: '',
+            project: {
+                ...state.project,
+                name: bandInfo.name,
+                avatar: bandInfo.images[0].url,
+                spotify: bandInfo.external_urls.spotify
+            }
+        }));
+    }
     
     projectSubmit = (e) => {
 		console.log(e);
@@ -73,17 +104,38 @@ export class Manage extends React.Component {
 		e.preventDefault();
 		createProject(this.props.userId, this.state.project)
 		.then(this.setState({complete: true}))
+        .then(this.fetchAll(this.props.userId))
 		.catch(() => this.setState({ errorMsg: 'There was an error!' }))
-	}
+    }
+    
+    projectSelect = (index) => {
+        console.log(index);
+        this.setState(state => ({
+            projectKey: index,
+            project: { ...state.projects[index] }
+        }));
+    }
+
+    projectUpdate = (e) => {
+        e.preventDefault();
+        console.log(e);
+        updateProject(this.props.userId, this.state.projects[this.state.projectKey].id, this.state.project)
+		.then(this.setState({complete: true}))
+        .then(this.fetchAll(this.props.userId))
+		.catch(() => this.setState({ errorMsg: 'There was an error!' }))
+    }
 
     render() {
 
         const { name, avatar, spotify, website, yourInstrument } = this.state.project;
+        const submit = this.state.projectKey ? (this.projectUpdate) : (this.projectSubmit);
 
         return (
-
-            <ProjectForm onChange={this.handleChange} onSubmit={this.projectSubmit} formData={ name, avatar, spotify, website, yourInstrument } />
-
+            <main className="manage">
+                <Projects projects={this.state.projects} userId={this.props.userId} select={this.projectSelect} />
+                <ProjectForm onChange={this.handleChange} onSubmit={submit} formData={{ name, avatar, spotify, website, yourInstrument }} projectKey={this.state.projectKey} />
+                <SpotifySearch onSubmit={(e) => e.preventDefault()} onChange={this.handleSpotifySearch} spotifySubmit={this.handleSpotifySubmit} formData={this.state.spotifyString} results={this.state.spotifyResults.slice(0,6)} />
+            </main>
         )
     }
 }

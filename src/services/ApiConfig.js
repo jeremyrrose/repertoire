@@ -24,11 +24,15 @@ export const spotifyGetToken = async () => {
 
 export const spotifySearch = async (string) => {
 
-	if (!myStorage.getItem('spotifyToken') || Number(myStorage.getItem('tokenTime')) + 3500000 < new Date().getTime()) {
+	const setToken = async () => {
 		const token = await spotifyGetToken();
 		myStorage.setItem('spotifyToken', token);
 		myStorage.setItem('tokenTime', new Date().getTime());
 		console.log(myStorage);
+	}
+
+	if (!myStorage.getItem('spotifyToken') || Number(myStorage.getItem('tokenTime')) + 3500000 < new Date().getTime()) {
+		setToken();
 	}
 
 	try {
@@ -36,5 +40,9 @@ export const spotifySearch = async (string) => {
 		return response;
 	} catch (error) {
 		console.log(error);
+		if (error.response.status === 401) {
+			console.log(`it's 401!`);
+			setToken();
+		}
 	}
 }

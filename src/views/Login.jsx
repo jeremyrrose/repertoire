@@ -1,10 +1,11 @@
 import React from 'react';
+import { LoginForm } from '../forms';
 
-export const Login = () => {
+export const Login = (props) => {
 
     return (
         <main>
-            Login
+            <LoginForm onChange={props.onChange} onSubmit={props.changeUser} formData={props.formData} />
         </main>
     )
 

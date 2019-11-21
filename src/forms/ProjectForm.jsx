@@ -2,8 +2,10 @@ import React from 'react';
 import { Input, Button } from '../shared';
 
 export const ProjectForm = (props) => {
-	const { onChange, onSubmit } = props;
-	const { name, avatar, spotify, yourInstrument, website } = props.formData
+	const { onChange, onSubmit, projectKey } = props;
+    const { name, avatar, spotify, yourInstrument, website } = props.formData;
+    const label = projectKey ? `Update "${name}" ?` : `Add band >>`;
+
 	return (
 		<form className='form' onSubmit={onSubmit} >
 			<Input
@@ -46,7 +48,7 @@ export const ProjectForm = (props) => {
                 onChange={(e) => onChange(e)}
             />
 
-			<Button title='Add project >>' />
+			<Button title={label} />
 
 		</form>
 	)
