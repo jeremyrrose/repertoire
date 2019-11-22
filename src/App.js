@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import { Header } from './components';
-import { Splash, Profile, Manage } from './views';
+import { Splash, Profile, Manage, Browse } from './views';
 import Signup from './views/Signup';
 import { getAllUsers } from './services/ApiCalls';
 
@@ -13,6 +13,7 @@ class App extends React.Component {
     this.state = {
       user: '',
       data: {},
+      dataKeys: [],
       loginForm: '',
       message: ''
     }
@@ -25,8 +26,10 @@ class App extends React.Component {
   fetchUsers = async () => {
     try {
       const allUsers = await getAllUsers();
+      const keys = Object.keys(allUsers);
     this.setState({
-      data: { ...allUsers }
+      data: { ...allUsers },
+      dataKeys: [ ...keys ]
     })} catch (error) {
       console.error(error);
     }
@@ -68,9 +71,10 @@ class App extends React.Component {
         <Header userId={this.state.user} greeting={greeting} changeUser={this.login} onChange={this.handleChange} formData={this.state.loginForm} />
         <Switch>
           <Route exact path="/" render={() => home} />
-          <Route exact path="/users/:profile_id" component={ Profile } />
-          <Route exact path="/signup" render={() => <Signup changeUser={this.changeUser} fetchUsers={this.fetchUsers} /> } />
-          <Route exact path="/manage" render={() => <Manage userId={this.state.user} /> } />
+          <Route exact path="/browse" render={(props) => <Browse userKeys={this.state.dataKeys} data={this.state.data} />} />
+          <Route exact path="/users/:profile_id" render={(props) => <Profile userKeys={this.state.dataKeys} {...props} /> } />
+          <Route exact path="/signup" render={(props) => <Signup changeUser={this.changeUser} fetchUsers={this.fetchUsers} {...props} /> } />
+          <Route exact path="/manage" render={(props) => <Manage userId={this.state.user} {...props} /> } />
         </Switch>
       </div>
     );

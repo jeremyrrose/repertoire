@@ -19,8 +19,8 @@ const Project = ({ data, id, select, index }) => {
                     <p><a href={spotify} target="_blank"><img src={spotifyLogo} alt="listen on Spotify" /> Listen on Spotify</a></p>
                 </div>
             </div>
+            {edit}
         </div>
-        {edit}
         </>
     )
 

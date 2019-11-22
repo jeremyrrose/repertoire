@@ -7,3 +7,4 @@ export * from './Education';
 export * from './Upcoming';
 export * from './Past';
 export * from './Performance';
+export * from './UserBadge';

@@ -7,7 +7,7 @@ export const Header = (props) => {
 
     const Hello = (props) => {
         return (
-            <p>{props.greeting} &nbsp; || &nbsp; <NavLink to={`/users/${props.userId}`}>Your Profile</NavLink> &nbsp; || &nbsp; <NavLink to='/manage'>Manage</NavLink> &nbsp; <button onClick={props.changeUser}>Logout</button></p>
+            <p><NavLink to="/browse">Browse</NavLink> &nbsp; || &nbsp; <NavLink to={`/users/${props.userId}`}>Your Profile</NavLink> &nbsp; || &nbsp; <NavLink to='/manage'>Manage</NavLink> &nbsp; <button onClick={props.changeUser}>Logout</button></p>
         )
     }
 

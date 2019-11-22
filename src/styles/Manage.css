@@ -1,3 +1,63 @@
 main.manage {
+    margin: 0 auto;
     flex-direction: column;
+    max-width: 680px;
+}
+
+main.manage .projects {
+    max-width: 680px;
+}
+
+
+.manage div.input {
+    position: relative;
+}
+
+.manage form {
+    font-family: 'Comfortaa', sans-serif;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin: 12px;
+    position: relative;
+}
+
+.manage input {
+    font-size: 18px;
+    width: 24em;
+    font-family: 'Comfortaa', sans-serif;
+    color: #767586;
+    padding: 8px 12px 4px 12px;
+    margin: 0px 0px 22px 0px;
+    outline: none;
+    border-radius: 10px;
+    border: 0px solid #767586;
+    box-shadow: 0px 0px 6px -1px #767586;
+}
+
+.manage label {
+    font-size: 18px;
+    color: #767586;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    pointer-events: none;
+    transition: .2s;
+}
+
+.manage input:focus + label, .manage input:valid + label {
+    font-size: 12px;
+    top: -8px;
+    padding: 0px 6px;
+    background: #ffffff;
+}
+
+button.spotify {
+    background: #EBEAF4;
+    margin-bottom: 12px;
+}
+
+button.spotify img {
+    margin-right: 12px;
 }

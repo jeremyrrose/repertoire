@@ -4,3 +4,4 @@ export * from './Signup';
 export * from './Manage';
 export * from './EditUser';
 export * from './Splash';
+export * from './Browse';

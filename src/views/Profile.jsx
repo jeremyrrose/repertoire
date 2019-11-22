@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Info, Instruments, Projects, Education, Upcoming, Past } from '../components/';
 import { getSingleUser, getUserProjects, getProjectPerformances } from '../services/ApiCalls';
 import '../styles/Profile.css';
@@ -10,12 +11,14 @@ export class Profile extends React.Component {
         this.state = {
             profile: {},
             projects: [],
-            performances: []
+            performances: [],
+            profileId: ''
         }
     }
 
     componentDidMount = async () => {
-        await this.fetchAll(this.props.match.params.profile_id)
+        await this.fetchAll(this.props.match.params.profile_id);
+        await this.setState({profileId: this.props.match.params.profile_id});
     }
 
     fetchAll = async (user_id) => {
@@ -55,6 +58,15 @@ export class Profile extends React.Component {
         projects.forEach(proj => projectKeys[proj.id] = proj.name);
         const { upcoming, past } = this.state.performances;
         const { user_id } = this.props.match.params;
+        const profile_id = this.state.profileId;
+        const keys = this.props.userKeys;
+        // console.log('profile_id', profile_id);
+        // console.log(keys);
+        // if (!keys.includes(profile_id)) {
+        //      return (
+        //          <Redirect to='/' />
+        //      )
+        // }
 
         return (
             <main>

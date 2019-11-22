@@ -1,0 +1,36 @@
+main.browse {
+    flex-direction: column;
+}
+
+.userBadge {
+    display: flex;
+    width: 400px;
+    margin: 20px;
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 6px 6px lightgray;
+}
+
+.userBadge .avatar {
+    height: 120px;
+    width: 120px;
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin: 0px 20px 0px 0px;
+}
+
+.userBadge .avatar img {
+    height: 100%;
+    width: 100%;
+}
+
+.userBadge div {
+    text-align: left;
+}
+
+.userBadge h4 {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 26px;
+    color: #000000;
+}

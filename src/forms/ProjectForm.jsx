@@ -48,7 +48,7 @@ export const ProjectForm = (props) => {
                 onChange={(e) => onChange(e)}
             />
 
-			<Button title={label} />
+			<Button title={label} classname="manageForm" />
 
 		</form>
 	)

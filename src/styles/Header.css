@@ -49,7 +49,7 @@ header input:focus + label, header input:valid + label, .splashPitch input:focus
     opacity: 0;
 }
 
-header button, .splashPitch button {
+button, header button, .splashPitch button {
     font-family: 'Comfortaa', sans-serif;
     color: #ffffff;
     background: #D56065;
@@ -60,4 +60,9 @@ header button, .splashPitch button {
     border-radius: 10px;
     position: relative;
     top: -2px;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #767586;
 }

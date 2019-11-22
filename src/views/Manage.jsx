@@ -145,6 +145,7 @@ export class Manage extends React.Component {
         if (this.state.which === `user`) {
             return (
                 <>
+                Click to manage:
                 <ManageButton view='user' />
                 <ManageButton view='projects' />
                 <EditUser userId={this.props.userId} />
@@ -154,13 +155,16 @@ export class Manage extends React.Component {
 
         if (this.state.which === `projects`) {
         return (
+            <>
+            Click to manage:
+            <ManageButton view='user' />
+            <ManageButton view='projects' />
             <main className="manage">
-                <ManageButton view='user' />
-                <ManageButton view='projects' />
                 <Projects projects={this.state.projects} userId={this.props.userId} select={this.projectSelect} />
                 <ProjectForm onChange={this.handleChange} onSubmit={submit} formData={{ name, avatar, spotify, website, yourInstrument }} projectKey={this.state.projectKey} />
                 <SpotifySearch onSubmit={(e) => e.preventDefault()} onChange={this.handleSpotifySearch} spotifySubmit={this.handleSpotifySubmit} formData={this.state.spotifyString} results={this.state.spotifyResults.slice(0,6)} />
             </main>
+            </>
         )
         }
 
