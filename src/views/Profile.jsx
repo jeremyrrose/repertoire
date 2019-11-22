@@ -58,15 +58,10 @@ export class Profile extends React.Component {
         projects.forEach(proj => projectKeys[proj.id] = proj.name);
         const { upcoming, past } = this.state.performances;
         const { user_id } = this.props.match.params;
-        const profile_id = this.state.profileId;
-        const keys = this.props.userKeys;
-        // console.log('profile_id', profile_id);
-        // console.log(keys);
-        // if (!keys.includes(profile_id)) {
-        //      return (
-        //          <Redirect to='/' />
-        //      )
-        // }
+
+        // setting this up below to make bad public profile addresses redirect to browse; not done, so it's commented
+        // const profile_id = this.state.profileId;
+        // const keys = this.props.userKeys;
 
         return (
             <main>

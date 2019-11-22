@@ -64,6 +64,11 @@ main h4 {
     cursor: pointer;
 }
 
+.instruments {
+    font-size: 20px;
+    margin-bottom: 24px;
+}
+
 .instruments h4, .projects h4 {
     margin: 0px;
 }
@@ -111,4 +116,15 @@ main h4 {
     width: 180px;
     flex: none;
     color: #D56065;
+}
+
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+    }
+
+    main > .feed {
+        width: 100%;
+        flex: none;
+    }
 }

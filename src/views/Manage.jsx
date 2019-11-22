@@ -32,11 +32,8 @@ export class Manage extends React.Component {
     }
 
     componentDidMount = async () => {
-            console.log(this.props.userId);
             await this.fetchAll(this.props.userId);
             this.setState({ which: 'user' });
-            // const resp = await spotifySearch(`Total+War`);
-            // console.log(resp); 
     }
 
     fetchAll = async (user_id) => {
@@ -89,7 +86,6 @@ export class Manage extends React.Component {
     handleSpotifySubmit = (e) => {
         e.preventDefault();
         const id = e.target.id;
-        console.log(e.target.id);
         const bandInfo = this.state.spotifyResults[id];
         this.setState(state => ({
             spotifyString: '',
@@ -103,8 +99,6 @@ export class Manage extends React.Component {
     }
     
     projectSubmit = (e) => {
-		console.log(e);
-		console.log(this.state.project);
 		e.preventDefault();
 		createProject(this.props.userId, this.state.project)
 		.then(this.setState({complete: true}))
@@ -113,7 +107,6 @@ export class Manage extends React.Component {
     }
     
     projectSelect = (index) => {
-        console.log(index);
         this.setState(state => ({
             projectKey: index,
             project: { ...state.projects[index] }
@@ -122,7 +115,6 @@ export class Manage extends React.Component {
 
     projectUpdate = (e) => {
         e.preventDefault();
-        console.log(e);
         updateProject(this.props.userId, this.state.projects[this.state.projectKey].id, this.state.project)
 		.then(this.setState({complete: true}))
         .then(this.fetchAll(this.props.userId))

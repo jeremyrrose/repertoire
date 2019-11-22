@@ -66,3 +66,8 @@ button:hover {
     cursor: pointer;
     background: #767586;
 }
+
+/* SEE Profile.css for other styling on this button; this is here to override the above */
+.info button {
+    border-radius: 0px;
+}

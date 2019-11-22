@@ -2,7 +2,8 @@ import React from 'react';
 
 export const Education = (props) => {
 
-    console.log(props);
+    // This is a less crucial feature; after starting to develop it I realized it wasn't worth it for MVP. Please forgive the commented code
+
     const education = props.education;
 
     // if (props.education.length === 0) {

@@ -3,8 +3,6 @@ import { Performance } from './';
 
 export const Upcoming = (props) => {
 
-    console.log(props);
-
     if (props.upcoming) {
         const upcoming = [ ...props.upcoming ];
         const upcomingArray = upcoming.map((perf, i) => <Performance key={i} data={perf} projectKeys={props.projectKeys} /> );

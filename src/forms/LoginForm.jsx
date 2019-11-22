@@ -20,6 +20,8 @@ export const LoginForm = (props) => {
 
 		    <Button title='Login' />
 
+			&nbsp; || &nbsp; <NavLink to="/signup">Sign up</NavLink>
+
 		</form>
 	)
 }

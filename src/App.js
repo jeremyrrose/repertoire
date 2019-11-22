@@ -41,12 +41,9 @@ class App extends React.Component {
 
   login = (e) => {
     e.preventDefault();
-    console.log(e);
     const users = { ...this.state.data };
-    console.log(users);
     const mapHelper = Object.keys(users);
     const userNum = mapHelper.filter(key => users[key].username === this.state.loginForm);
-    console.log(userNum);
     const loginNum = userNum[0] || this.state.loginForm;
     this.setState(state => ({ 
       user: loginNum,

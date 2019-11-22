@@ -3,8 +3,6 @@ import { Performance } from './';
 
 export const Past = (props) => {
 
-    console.log(props);
-
     if (props.past) {
         const past = [ ...props.past ];
         const pastArray = past.map((perf, i) => <Performance key={i} data={perf} projectKeys={props.projectKeys} /> );

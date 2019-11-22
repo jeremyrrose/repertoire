@@ -25,8 +25,6 @@ export default class Signup extends React.Component {
 	handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
 	handleSubmit = async (e) => {
-		console.log(e);
-		console.log(this.state);
 		e.preventDefault();
 		userSignup(this.state)
 		.then(result => this.props.changeUser(result.data.id))

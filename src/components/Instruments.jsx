@@ -4,9 +4,9 @@ export const Instruments = (props) => {
 
     if (props.instruments) {
 
+        // this has a long way to go; will eventually interpret an array of instruments but it's just a string for now
         const instruments = props.instruments;
         const axes = instruments;
-        // const axes = instruments.join(', ');
     
         if (axes) {
             return (

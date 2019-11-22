@@ -15,7 +15,7 @@ export const Header = (props) => {
 
     return (
         <header>
-            <h1>repertoire</h1>
+            <NavLink to='/'><h1>repertoire</h1></NavLink>
             { greeting }
         </header>
     )

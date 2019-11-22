@@ -3,8 +3,6 @@ import React from 'react';
 export const Performance = (props) => {
     const { projectKeys } = props;
     const { projectId } = props.data;
-    console.log(`projectKeys[projectId]`, projectKeys[11]);
-
 
     return (
         <div className="performance">

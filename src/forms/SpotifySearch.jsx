@@ -21,7 +21,6 @@ export const SpotifySearch = (props) => {
     }
     if (results.length > 0) {
         spotifyButtons = results.map((result, i) => <SpotifyButton key={i} id={i} img={ result.images[0] ? result.images[result.images.length-1].url : null } title={result.name} onSubmit={spotifySubmit} />);
-        console.log(spotifyButtons);
     }
     
 	return (
