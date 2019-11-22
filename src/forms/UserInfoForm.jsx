@@ -3,7 +3,7 @@ import { Input, Button } from '../shared';
 
 export const UserInfoForm = (props) => {
 	const { onChange, onSubmit } = props;
-	const { first, last, city, state, image_url, username, email, instruments } = props.formData
+	const { first, last, city, state, avatar, username, email, instruments } = props.formData
 	return (
 		<form className='form' onSubmit={onSubmit} >
 			<Input
@@ -55,10 +55,10 @@ export const UserInfoForm = (props) => {
 			/>
 
 			<Input
-				name='image_url'
-				value={image_url}
+				name='avatar'
+				value={avatar}
 				required={false}
-				placeholder='Profile photo optional'
+				placeholder='Profile photo (optional)'
 				onChange={(e) => onChange(e)}
 			/>
 			<Input

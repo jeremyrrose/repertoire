@@ -3,6 +3,7 @@
 
 .App {
   text-align: center;
+  font-family: 'Comfortaa', sans-serif;
 }
 
 .App-logo {
@@ -22,4 +23,14 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #3C4D9F;
+}
+
+a:hover {
+  text-decoration: underline;
 }

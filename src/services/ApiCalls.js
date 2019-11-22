@@ -46,6 +46,16 @@ export const userSignup = async (userData) => {
 	}
 }
 
+export const userUpdate = async (user, userData) => {
+	try {
+		const response = await api.put(`/users/${user}`, userData);
+		console.log(response);
+		return response;
+	} catch (error) {
+		throw error;
+	}
+}
+
 export const createProject = async (user, projectData) => {
 	try {
 		const response = await api.post(`/users/${user}/projects`, projectData);

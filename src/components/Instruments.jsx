@@ -5,7 +5,8 @@ export const Instruments = (props) => {
     if (props.instruments) {
 
         const instruments = props.instruments;
-        const axes = instruments.join(', ');
+        const axes = instruments;
+        // const axes = instruments.join(', ');
     
         if (axes) {
             return (

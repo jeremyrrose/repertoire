@@ -2,9 +2,9 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import { Header } from './components';
-import { Login, Profile, Manage } from './views';
+import { Splash, Profile, Manage } from './views';
 import Signup from './views/Signup';
-import { getAllUsers, getSingleUser, getUserProjects } from './services/ApiCalls';
+import { getAllUsers } from './services/ApiCalls';
 
 class App extends React.Component {
 
@@ -39,32 +39,37 @@ class App extends React.Component {
   login = (e) => {
     e.preventDefault();
     console.log(e);
-    this.setState({ 
-      user: this.state.loginForm,
+    const users = { ...this.state.data };
+    console.log(users);
+    const mapHelper = Object.keys(users);
+    const userNum = mapHelper.filter(key => users[key].username === this.state.loginForm);
+    console.log(userNum);
+    const loginNum = userNum[0] || this.state.loginForm;
+    this.setState(state => ({ 
+      user: loginNum,
       loginForm: ''
-     });
+     }));
   }
 
   render() {
 
     let home;
     if (this.state.user) {
-      home = <Redirect to='/manage' />
+      home = <Redirect to={`/users/${this.state.user}`} />
     } else {
-      home = <Login changeUser={this.login} onChange={this.handleChange} formData={this.state.loginForm} />
+      home = <Splash userId={this.state.user} onChange={this.handleChange} changeUser={this.login} formData={this.state.loginForm} />
     }
 
-    let name = '';
-    this.state.user && (name=this.state.data[this.state.user-1].first)
+    let greeting = '';
+    (this.state.user && this.state.data[this.state.user-1]) && (greeting = `hello, ${this.state.data[this.state.user-1].first}`);
 
     return (
       <div className="App">
-        <Header userId={this.state.user} name={name} changeUser={this.login} onChange={this.handleChange} formData={this.state.loginForm} />
+        <Header userId={this.state.user} greeting={greeting} changeUser={this.login} onChange={this.handleChange} formData={this.state.loginForm} />
         <Switch>
           <Route exact path="/" render={() => home} />
-          <Route exact path="/home" component={ Profile } />
           <Route exact path="/users/:profile_id" component={ Profile } />
-          <Route exact path="/signup" render={() => <Signup changeUser={this.changeUser} /> } />
+          <Route exact path="/signup" render={() => <Signup changeUser={this.changeUser} fetchUsers={this.fetchUsers} /> } />
           <Route exact path="/manage" render={() => <Manage userId={this.state.user} /> } />
         </Switch>
       </div>

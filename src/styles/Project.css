@@ -1,7 +1,52 @@
 .project {
     display: flex;
+    width: 100%;
+    margin: 0px 0px 34px 0px;
+}
+
+.project h4 {
+    font-family: 'Comfortaa', sans-serif;
+    color: black;
+    font-size: 28px;
+    font-weight: bold;
+    padding-right: 16px;
+    margin: 0px;
 }
 
 .project img {
-    height: 100px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.project > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.projectTopRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.projectTopRow p {
+    text-align: right;
+    color: #767586;
+    margin: 14px 0px 0px 0px;
+}
+
+.projectBottomRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.projectBottomRow p {
+    margin: 4px 0px 0px 0px;
+}
+
+.projectBottomRow img {
+    height: 18px;
+    opacity: .4;
+    margin: 0px;
 }

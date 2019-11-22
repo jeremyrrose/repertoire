@@ -7,6 +7,7 @@ export const Input = ({ onChange, name, placeholder, required, value }) => (
       name={name}
       required={required}
       onChange={e => onChange(e)}
+      autoComplete="off"
     />
     <label htmlFor={name}>
       <span>{placeholder}</span>

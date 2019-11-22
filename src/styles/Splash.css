@@ -1,0 +1,51 @@
+main.splash {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+.splashPitch {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+  
+main.splash h2 {
+    font-size: 36px;
+    font-weight: normal;
+    margin: 0px;
+  }
+
+main.splash h2 span {
+    font-family: 'Baloo Bhai', serif;
+    color: #3C4D9F;
+    font-size: 60px;
+  }
+
+.splashPitch > div {
+    position: relative;
+    margin-left: 20px;
+    top: 30px;
+}
+
+.splashPitch p {
+    font-size: 26px;
+}
+
+.splashPitch a {
+    padding: 6px 14px;
+    color: #ffffff;
+    background: #D56065;
+    border-radius: 18px;
+}
+
+.splashPitch a:hover {
+    text-decoration: none;
+    background: #3c4d9f;
+}
+
+/* PLEASE SEE Header.css for additional form styling */
+
+.splashPitch form {
+    margin: 0px;
+}

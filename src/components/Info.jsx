@@ -1,12 +1,19 @@
 import React from 'react';
 
-export const Info = ({ first, last, city, state }) => {
+export const Info = ({ first, last, city, state, avatar }) => {
+
+    const fullName = first + ' ' + last;
 
     return (
         <div className="info">
-            <h4>{first}<br/>{last}</h4>
-            <p>{city}, {state}</p>
-            <button>Connect</button> <button>Contact</button>
+            <div className="avatar">
+                <img src={avatar} alt={fullName} />
+            </div>
+            <div>
+                <h4>{first}<br/>{last}</h4>
+                <p>{city}, {state}</p>
+                <button>Contact</button>
+            </div>
         </div>
     )
 

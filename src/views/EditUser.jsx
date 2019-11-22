@@ -1,10 +1,9 @@
 import React from 'react';
 import { Redirect, BrowserRouter as Router } from 'react-router-dom';
 import { UserInfoForm } from '../forms';
-import { userSignup } from '../services/ApiCalls';
-import '../styles/Signup.css';
+import { getSingleUser, userUpdate } from '../services/ApiCalls';
 
-export default class Signup extends React.Component {
+export default class EditUser extends React.Component {
 
 	constructor(props){
 		super(props);
@@ -15,12 +14,17 @@ export default class Signup extends React.Component {
 			email: '',
 			city: '',
 			state: '',
-			instrument: '',
+			instruments: '',
 			education: '',
 			avatar: '',
 			complete: false
 		}
-	}
+    }
+    
+    componentDidMount = async () => {
+        const userData = await getSingleUser(this.props.userId);
+        this.setState({ ...userData });
+    }
 
 	handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
@@ -28,8 +32,7 @@ export default class Signup extends React.Component {
 		console.log(e);
 		console.log(this.state);
 		e.preventDefault();
-		userSignup(this.state)
-		.then(result => this.props.changeUser(result.data.id))
+		await userUpdate(this.props.userId, this.state)
 		.then(this.setState({complete: true}))
 		.catch(() => this.setState({ errorMsg: 'There was an error!' }))
 	}
@@ -37,7 +40,7 @@ export default class Signup extends React.Component {
 	render() {
 
 		if (this.state.complete) {
-			return <Redirect to='/manage' />
+			return <Redirect to={`/users/${this.props.userId}`} />
 		}
 
 		const { first, last, username, email, city,	state, instruments, education, avatar } = this.state;
@@ -45,7 +48,7 @@ export default class Signup extends React.Component {
 		return (
 
 			<main className="signup">
-				<h2>Build your repertoire...</h2>
+				<h2>Update your repertoire...</h2>
 				<UserInfoForm 
 					formData={{ first, last, username, email, city,	state, instruments, education, avatar }}
 					onChange={this.handleChange}

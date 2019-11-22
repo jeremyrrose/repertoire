@@ -7,20 +7,108 @@ main {
 main h4 {
     font-family: 'Baloo Bhai', serif;
     font-weight: normal;
+    color: #3C4D9F;
     font-size: 40px;
-    margin: 24px 6px 6px 6px;
+    margin: 0px;
 }
 
-.info h4, .project h4 {
+.primaryInfo {
+    width: 40vw;
+    min-width: 540px;
+    margin: 0px 40px;
+}
+
+.info {
+    display: flex;
+    margin: 0px 0px 24px 0px;
+}
+
+.info .avatar {
+    height: 180px;
+    width: 180px;
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    margin: 0px 30px 0px 0px;
+}
+
+.info .avatar img {
+    height: 100%;
+    width: 100%;
+}
+
+.info h4 {
     font-family: 'Comfortaa', sans-serif;
     font-weight: bold;
     font-size: 26px;
+    margin: 0px;
 }
 
 .info h4 {
     font-size: 34px;
+    color: black;
+}
+
+.info button {
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: #D56065;
+    background: transparent;
+    padding: 0px;
+    border: 0px;
+}
+
+.info button:hover {
+    border-bottom: 2px solid #d56065;
+    cursor: pointer;
+}
+
+.instruments h4, .projects h4 {
+    margin: 0px;
+}
+
+/* PLEASE SEE Project.css */
+
+.feed {
+    flex-grow: 10;
+    position: relative;
+    top: -14px;
 }
 
 .performance {
     display: flex;
+    color: #767586;
+    font-size: 18px;
+    margin: 0px 0px 24px 0px;
+}
+
+.performance .date {
+    width: 94px;
+    margin: 0px;
+    padding: 0px;
+    flex: none;
+}
+
+.performance .venue {
+    flex-grow: 9;
+}
+
+.performance .venue p {
+    margin: 0px;
+    padding-right: 18px;
+    font-size: 12px;
+}
+
+.performance .venue p:first-child {
+    font-size: 18px;
+    color: #000000;
+    margin: 0px;
+}
+
+.performance .perfProj {
+    margin: 0px;
+    width: 180px;
+    flex: none;
+    color: #D56065;
 }

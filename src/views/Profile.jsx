@@ -49,7 +49,7 @@ export class Profile extends React.Component {
 
     render = () => {       
 
-        const { first, last, city, state, education, instruments } = this.state.profile;
+        const { first, last, city, state, education, instruments, avatar } = this.state.profile;
         const projects = this.state.projects;
         const projectKeys = {};
         projects.forEach(proj => projectKeys[proj.id] = proj.name);
@@ -59,7 +59,7 @@ export class Profile extends React.Component {
         return (
             <main>
                 <section className="primaryInfo">
-                    <Info first={first} last={last} city={city} state={state} />
+                    <Info first={first} last={last} city={city} state={state} avatar={avatar} />
                     <Instruments instruments={instruments} />
                     <Projects user_id={user_id} projects={projects} /> 
                     <Education education={education} />
