@@ -5,6 +5,8 @@ Repertoire is a portfolio management utility for musicians, designed to highligh
 
 View a limited demonstration here: (http://repertoire.surge.sh)
 
+![demonstration](public/repertoire_demo.gif)
+
 ## Tools
 Built in React using VSCode. Designed using Figma.
 
