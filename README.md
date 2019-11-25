@@ -10,6 +10,7 @@ Built in React using VSCode. Designed using Figma.
 
 ## Future Development
 * Fully implement user login and profile edit.
+* Create server-side implementation of Spotify project search.
 * Introduce social connections between accounts.
 * Enable sharing of projects between multiple users.
 * Search function.
