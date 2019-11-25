@@ -8,7 +8,7 @@ View a limited demonstration here: (http://repertoire.surge.sh)
 ## Tools
 Built in React using VSCode. Designed using Figma.
 
-##Future Development
+## Future Development
 * Fully implement user login and profile edit.
 * Introduce social connections between accounts.
 * Enable sharing of projects between multiple users.
